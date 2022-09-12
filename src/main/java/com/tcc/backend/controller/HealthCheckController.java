@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin
 @RestController
-public class HealthController {
+public class HealthCheckController {
 
     @GetMapping("/health")
-    public ResponseEntity<HttpStatus> checkHealth(){
-        return new ResponseEntity<>(null, HttpStatus.OK);
+    public ResponseEntity<String> healthCheck(){
+        return new ResponseEntity<>("Online", HttpStatus.OK);
     }
 }

@@ -46,3 +46,7 @@ Para atualizar as informações referentes a sala cujo numero seja {numero}
 Para deletar a sala cujo numero seja {numero} do bando de dados
 - GET /sala/{numero}/atendimento  
 Permite que a sala cujo numero seja {numero} chame o proximo paciente para um atendimento, respeitando qual a especialidade da sala
+
+### HealthCheck  
+- GET /health  
+Retorna um HTTP Code 200, se a API estiver Online
