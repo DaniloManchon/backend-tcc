@@ -30,7 +30,6 @@ public class PacienteService {
             Paciente _paciente = pacienteRepository.save(new Paciente(
                             paciente.getCpf(),
                             paciente.getNome(),
-                            paciente.getIdade(),
                             paciente.getPreferencial(),
                             paciente.getCriticidade(),
                             java.time.LocalDateTime.now(),
