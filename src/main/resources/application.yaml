@@ -1,0 +1,48 @@
+server:
+  port: 10000
+
+#--- Local H2 ---
+#spring:
+#  datasource:
+#    url: jdbc:h2:file:./testdb
+#    driverClassName: org.h2.Driver
+#    username: sa
+#  jpa:
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.H2Dialect
+#        ddl-auto: update
+#        show-sql: true
+#  h2:
+#    console:
+#      path: /h2-console
+#      settings:
+#        web-allow-others: true
+
+#--- Postegres ---
+spring:
+  devtools:
+    livereload:
+      enabled: false
+  datasource:
+    hikari:
+      connectionTimeout: 20000
+      maximumPoolSize: 5
+      url: ${db_internal_url}
+      username: ${db_user}
+      password: ${db_password}
+  database:
+    driverClassName: org.postgresql.Driver
+  sql:
+    init:
+      platform: postgres
+  jpa:
+    database: POSTGRESQL
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        ddl-auto: update
+        show-sql: false
+  h2:
+    console:
+      enabled: false
