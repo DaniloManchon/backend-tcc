@@ -1,7 +1,7 @@
 server:
   port: 10000
 
-#--- Local H2 ---
+#Local H2
 #spring:
 #  datasource:
 #    url: jdbc:h2:file:./testdb
@@ -19,7 +19,7 @@ server:
 #      settings:
 #        web-allow-others: true
 
-#--- Postegres ---
+#Postegres
 spring:
   devtools:
     livereload:
