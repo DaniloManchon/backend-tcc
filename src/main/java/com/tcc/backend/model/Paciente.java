@@ -24,8 +24,6 @@ public class Paciente {
     @Column
     private String nome;
     @Column
-    private String idade;
-    @Column
     private int preferencial;
 
     // azul < verde < amarelo < laranja < vermelho
@@ -48,10 +46,9 @@ public class Paciente {
     @OneToMany
     private List<Exame> exame;
 
-    public Paciente(String cpf, String nome, String idade, int preferencial, int criticidade, LocalDateTime data_entrada, String proximo_passo, @Nullable String sala_atendimento, @Nullable List<Medicamento> medicamento, @Nullable List<Exame> exame) {
+    public Paciente(String cpf, String nome, int preferencial, int criticidade, LocalDateTime data_entrada, String proximo_passo, @Nullable String sala_atendimento, @Nullable List<Medicamento> medicamento, @Nullable List<Exame> exame) {
         this.cpf = cpf;
         this.nome = nome;
-        this.idade = idade;
         this.preferencial = preferencial;
         this.criticidade = criticidade;
         this.data_entrada = data_entrada;
