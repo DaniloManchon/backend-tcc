@@ -1,9 +1,7 @@
 package com.tcc.backend.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.lang.Nullable;
 
@@ -12,8 +10,6 @@ import java.util.List;
 
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 public class Paciente {
     @Id
