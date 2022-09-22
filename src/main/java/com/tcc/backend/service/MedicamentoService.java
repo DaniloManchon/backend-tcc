@@ -4,6 +4,7 @@ import com.tcc.backend.model.Medicamento;
 import com.tcc.backend.model.Paciente;
 import com.tcc.backend.repository.MedicamentoRepository;
 import com.tcc.backend.repository.PacienteRepository;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
+@Log4j2
 @Service
 public class MedicamentoService {
 
@@ -37,6 +39,7 @@ public class MedicamentoService {
         }
         pacienteData.setMedicamento(medicamentoArrayList);
         pacienteRepository.save(pacienteData);
+        log.info("addMedicamento: adicionando medicamentos ao paciente" + pacienteData.getId());
         return new ResponseEntity<>(pacienteData, HttpStatus.CREATED);
     }
 
@@ -50,6 +53,7 @@ public class MedicamentoService {
 
         pacienteData.setMedicamento(medicamentoArrayList);
         pacienteRepository.save(pacienteData);
+        log.info("substituirMedicamento: substituindo medicamentos ao paciente" + pacienteData.getId());
         return new ResponseEntity<>(pacienteData, HttpStatus.CREATED);
     }
 
