@@ -38,7 +38,7 @@ public class SalaController {
     }
 
     @GetMapping("/sala/{numero}")
-    public ResponseEntity<Sala> findSalaByNumero(@PathVariable("numero") String numero) {
+    public ResponseEntity<Sala> findSalaByNumero(@PathVariable("numero") int numero) {
         try {
             return salaService.findByNumero(numero);
         } catch (Exception e) {
@@ -47,7 +47,7 @@ public class SalaController {
     }
 
     @PatchMapping("/sala/{numero}/update")
-    public ResponseEntity<Sala> atualizarSala(@PathVariable("numero") String numero, @RequestBody SalaUpdateDto salaUpdateDto) {
+    public ResponseEntity<Sala> atualizarSala(@PathVariable("numero") int numero, @RequestBody SalaUpdateDto salaUpdateDto) {
         try {
             return salaService.atualizarSala(salaUpdateDto, numero);
         } catch (Exception e) {
@@ -57,7 +57,7 @@ public class SalaController {
 
 
     @DeleteMapping("/sala/{numero}")
-    public ResponseEntity<Sala> deleteSala(@PathVariable("numero") String numero) {
+    public ResponseEntity<Sala> deleteSala(@PathVariable("numero") int numero) {
         try {
             return salaService.deletarSala(numero);
         } catch (Exception e) {
@@ -66,7 +66,7 @@ public class SalaController {
     }
 
     @GetMapping("/sala/{numero}/atendimento")
-    public ResponseEntity<Paciente> atenderPaciente(@PathVariable("numero") String numero) {
+    public ResponseEntity<Paciente> atenderPaciente(@PathVariable("numero") int numero) {
         try {
             return salaService.atenderPaciente(numero);
         } catch (Exception e) {

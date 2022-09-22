@@ -37,7 +37,7 @@ public class Paciente {
     //relacionamento de muitos medicamento para um paciente
     @Nullable
     @Column
-    private String sala_atendimento;
+    private int sala_atendimento;
     @Nullable
     @OneToMany
     private List<Medicamento> medicamento;
@@ -46,7 +46,7 @@ public class Paciente {
     @OneToMany
     private List<Exame> exame;
 
-    public Paciente(String cpf, String nome, int preferencial, int criticidade, LocalDateTime data_entrada, String proximo_passo, @Nullable String sala_atendimento, @Nullable List<Medicamento> medicamento, @Nullable List<Exame> exame) {
+    public Paciente(String cpf, String nome, int preferencial, int criticidade, LocalDateTime data_entrada, String proximo_passo, int sala_atendimento, @Nullable List<Medicamento> medicamento, @Nullable List<Exame> exame) {
         this.cpf = cpf;
         this.nome = nome;
         this.preferencial = preferencial;

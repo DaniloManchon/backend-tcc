@@ -16,13 +16,13 @@ public class Sala {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column
-    private String numero;
+    private int numero;
     @Column
     private String especialidade;
     @Column
     private String responsavel;
 
-    public Sala(String numero, String especialidade, String responsavel) {
+    public Sala(int numero, String especialidade, String responsavel) {
         this.numero = numero;
         this.especialidade = especialidade;
         this.responsavel = responsavel;

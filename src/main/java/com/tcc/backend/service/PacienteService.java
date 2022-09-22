@@ -4,6 +4,7 @@ import com.tcc.backend.dto.PacienteCriticidadeUpdateDto;
 import com.tcc.backend.model.Paciente;
 import com.tcc.backend.repository.PacienteRepository;
 import com.tcc.backend.repository.SalaRepository;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Log4j2
 @Service
 public class PacienteService {
     @Autowired
@@ -22,6 +24,7 @@ public class PacienteService {
     public ResponseEntity<Paciente> criarPaciente(Paciente paciente) {
         Optional<Paciente> pacienteData = Optional.ofNullable(pacienteRepository.findByCpf(paciente.getCpf()));
         if (pacienteData.isPresent()) {
+            log.warn("criarPaciente: paciente: " + paciente.getId() + " encontrado");
             return new ResponseEntity<>(null, HttpStatus.FOUND);
         } else {
             if (paciente.getCriticidade() == 0) {
@@ -34,11 +37,12 @@ public class PacienteService {
                             paciente.getCriticidade(),
                             java.time.LocalDateTime.now(),
                             "triagem",
-                            null,
+                            0,
                             null,
                             null
                     )
             );
+            log.info("criarPaciente: paciente: " + paciente.getId() + " criado");
             return new ResponseEntity<>(_paciente, HttpStatus.CREATED);
         }
     }
@@ -46,8 +50,10 @@ public class PacienteService {
     public ResponseEntity<Paciente> findPacienteByCpf(String cpf) {
         Optional<Paciente> pacienteData = Optional.ofNullable(pacienteRepository.findByCpf(cpf));
         if (pacienteData.isPresent()) {
+            log.info("findPacienteByCpf: paciente " + pacienteData.get().getId() + " encontrado");
             return new ResponseEntity<>(pacienteData.get(), HttpStatus.OK);
         } else {
+            log.warn("findPacienteByCpf: paciente " + pacienteData.get().getId() + " nao encontrado");
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
@@ -57,8 +63,10 @@ public class PacienteService {
         if (pacienteData.isPresent()) {
             Paciente _paciente = pacienteData.get();
             _paciente.setCriticidade(pacienteCriticidadeUpdateDto.getCriticidade());
+            log.info("updateCriticidadePaciente: criticidade paciente " + pacienteData.get().getId() + "atualizado para " + pacienteCriticidadeUpdateDto.getCriticidade());
             return new ResponseEntity<>(pacienteRepository.save(_paciente), HttpStatus.OK);
         } else {
+            log.warn("updateCriticidadePaciente: paciente nao encontrado");
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
