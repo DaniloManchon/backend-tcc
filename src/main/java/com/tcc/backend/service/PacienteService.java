@@ -32,6 +32,8 @@ public class PacienteService {
                             paciente.getPreferencial(),
                             paciente.getCriticidade(),
                             java.time.LocalDateTime.now(),
+                            null,
+                            null,
                             "triagem",
                             0,
                             null,
@@ -49,7 +51,7 @@ public class PacienteService {
             log.info("findPacienteByCpf: paciente " + pacienteData.get().getId() + " encontrado");
             return new ResponseEntity<>(pacienteData.get(), HttpStatus.OK);
         } else {
-            log.warn("findPacienteByCpf: paciente " + pacienteData.get().getId() + " nao encontrado");
+            log.warn("findPacienteByCpf: paciente " + cpf + " nao encontrado");
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
@@ -67,4 +69,14 @@ public class PacienteService {
         }
     }
 
+    public ResponseEntity<Paciente> deletarPaciente(long id) {
+        if (pacienteRepository.findById(id).isPresent()) {
+            pacienteRepository.deleteById(id);
+            log.info("deletarPaciente: paciente " + id + " deletado");
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        }else{
+            log.warn("deletarPaciente: paciente " + id + " nao encontrado");
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }

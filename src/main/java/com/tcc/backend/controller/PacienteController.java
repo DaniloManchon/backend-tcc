@@ -41,4 +41,13 @@ public class PacienteController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @DeleteMapping("/paciente/{id}")
+    public ResponseEntity<Paciente> deletePaciente(@PathVariable("id") long id) {
+        try {
+            return pacienteService.deletarPaciente(id);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

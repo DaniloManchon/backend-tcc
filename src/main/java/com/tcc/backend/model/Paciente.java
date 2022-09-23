@@ -32,6 +32,12 @@ public class Paciente {
     private int criticidade;
     @Column
     private LocalDateTime data_entrada;
+    @Nullable
+    @Column
+    private LocalDateTime data_triagem;
+    @Nullable
+    @Column
+    private LocalDateTime data_atendimento;
     @Column
     private String proximo_passo;
     //relacionamento de muitos medicamento para um paciente
@@ -46,12 +52,14 @@ public class Paciente {
     @OneToMany
     private List<Exame> exame;
 
-    public Paciente(String cpf, String nome, int preferencial, int criticidade, LocalDateTime data_entrada, String proximo_passo, int sala_atendimento, @Nullable List<Medicamento> medicamento, @Nullable List<Exame> exame) {
+    public Paciente(String cpf, String nome, int preferencial, int criticidade, LocalDateTime data_entrada, @Nullable LocalDateTime data_triagem, @Nullable LocalDateTime data_atendimento, String proximo_passo, int sala_atendimento, @Nullable List<Medicamento> medicamento, @Nullable List<Exame> exame) {
         this.cpf = cpf;
         this.nome = nome;
         this.preferencial = preferencial;
         this.criticidade = criticidade;
         this.data_entrada = data_entrada;
+        this.data_triagem = data_triagem;
+        this.data_atendimento = data_atendimento;
         this.proximo_passo = proximo_passo;
         this.sala_atendimento = sala_atendimento;
         this.medicamento = medicamento;
