@@ -8,8 +8,6 @@ O projeto é um dos serviços oferecidos pela Curare, uma healthtech com foco no
 
 Para contato (ou apenas spam), envie um e-mail para: <a href="mailto:jonataslima@curaresaude.com"> Jônatas </a>
 
----
-
 ## Endpoints da aplicação  
 Atualmente os endpoints que a aplicação dispõe são:
 
@@ -45,8 +43,17 @@ Para atualizar as informações referentes a sala cujo numero seja {numero}
 - DELETE /sala/{numero}  
 Para deletar a sala cujo numero seja {numero} do bando de dados
 - GET /sala/{numero}/atendimento  
-Permite que a sala cujo numero seja {numero} chame o proximo paciente para um atendimento, respeitando qual a especialidade da sala
+Permite que a sala cujo numero seja {numero} chame o proximo paciente para um atendimento, respeitando a especialidade da sala
 
 ### HealthCheck  
 - GET /health  
 Retorna um HTTP Code 200, se a API estiver Online
+
+---
+
+## Testando Local  
+
+Para fazer os testes em ambiente local:  
+- Em ./src/main/resources/application.properties des-comentar tudo o que estiver abaixo de "Local H2" e comentar o que estiver abaixo de "Posgres";  
+  (Dessa forma o sistema usará um banco de dados H2 em memória ao invés de tentar se conectar à um Postgres)
+- É possivel rodar a aplicação como um container usando o comando "docker-compose up", ou simplesmente executar a aplicação usando a propria IDE.
