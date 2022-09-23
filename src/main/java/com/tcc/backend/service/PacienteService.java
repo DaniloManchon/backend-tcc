@@ -3,7 +3,6 @@ package com.tcc.backend.service;
 import com.tcc.backend.dto.PacienteCriticidadeUpdateDto;
 import com.tcc.backend.model.Paciente;
 import com.tcc.backend.repository.PacienteRepository;
-import com.tcc.backend.repository.SalaRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,14 +16,11 @@ import java.util.Optional;
 public class PacienteService {
     @Autowired
     PacienteRepository pacienteRepository;
-    @Autowired
-    SalaRepository salaRepository;
-
 
     public ResponseEntity<Paciente> criarPaciente(Paciente paciente) {
         Optional<Paciente> pacienteData = Optional.ofNullable(pacienteRepository.findByCpf(paciente.getCpf()));
         if (pacienteData.isPresent()) {
-            log.warn("criarPaciente: paciente: " + paciente.getId() + " encontrado");
+            log.warn("criarPaciente: paciente: " + pacienteData.get().getId() + " encontrado");
             return new ResponseEntity<>(null, HttpStatus.FOUND);
         } else {
             if (paciente.getCriticidade() == 0) {
@@ -42,7 +38,7 @@ public class PacienteService {
                             null
                     )
             );
-            log.info("criarPaciente: paciente: " + paciente.getId() + " criado");
+            log.info("criarPaciente: paciente: " + _paciente.getId() + " criado");
             return new ResponseEntity<>(_paciente, HttpStatus.CREATED);
         }
     }
@@ -63,7 +59,7 @@ public class PacienteService {
         if (pacienteData.isPresent()) {
             Paciente _paciente = pacienteData.get();
             _paciente.setCriticidade(pacienteCriticidadeUpdateDto.getCriticidade());
-            log.info("updateCriticidadePaciente: criticidade paciente " + pacienteData.get().getId() + "atualizado para " + pacienteCriticidadeUpdateDto.getCriticidade());
+            log.info("updateCriticidadePaciente: criticidade paciente " + pacienteData.get().getId() + " atualizado para " + pacienteCriticidadeUpdateDto.getCriticidade());
             return new ResponseEntity<>(pacienteRepository.save(_paciente), HttpStatus.OK);
         } else {
             log.warn("updateCriticidadePaciente: paciente nao encontrado");

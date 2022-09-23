@@ -39,7 +39,7 @@ public class MedicamentoService {
         }
         pacienteData.setMedicamento(medicamentoArrayList);
         pacienteRepository.save(pacienteData);
-        log.info("addMedicamento: adicionando medicamentos ao paciente" + pacienteData.getId());
+        log.info("addMedicamento: adicionando medicamentos ao paciente " + pacienteData.getId());
         return new ResponseEntity<>(pacienteData, HttpStatus.CREATED);
     }
 
@@ -53,7 +53,7 @@ public class MedicamentoService {
 
         pacienteData.setMedicamento(medicamentoArrayList);
         pacienteRepository.save(pacienteData);
-        log.info("substituirMedicamento: substituindo medicamentos ao paciente" + pacienteData.getId());
+        log.info("substituirMedicamento: substituindo medicamentos ao paciente " + pacienteData.getId());
         return new ResponseEntity<>(pacienteData, HttpStatus.CREATED);
     }
 

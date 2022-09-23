@@ -40,7 +40,7 @@ public class ExameService {
 
         pacienteData.setExame(exameArrayList);
         pacienteRepository.save(pacienteData);
-        log.info("addExame: adicionando exames ao paciente" + pacienteData.getId());
+        log.info("addExame: adicionando exames ao paciente " + pacienteData.getId());
         return new ResponseEntity<>(pacienteData, HttpStatus.CREATED);
     }
 
@@ -54,7 +54,7 @@ public class ExameService {
 
         pacienteData.setExame(exameArrayList);
         pacienteRepository.save(pacienteData);
-        log.info("substituirExame: substituindo exames do paciente" + pacienteData.getId());
+        log.info("substituirExame: substituindo exames do paciente " + pacienteData.getId());
         return new ResponseEntity<>(pacienteData, HttpStatus.CREATED);
     }
 

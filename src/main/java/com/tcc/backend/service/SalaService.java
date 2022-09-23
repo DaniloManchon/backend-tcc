@@ -32,7 +32,7 @@ public class SalaService {
             return new ResponseEntity<>(salaData.get(), HttpStatus.FOUND);
         } else {
             salaRepository.save(new Sala(sala.getNumero(), sala.getEspecialidade(), sala.getResponsavel()));
-            log.info("criarSala: criando sala:" + sala.getNumero());
+            log.info("criarSala: criando sala: " + sala.getNumero());
             return new ResponseEntity<>(sala, HttpStatus.CREATED);
         }
 
@@ -68,10 +68,10 @@ public class SalaService {
             Sala _sala = salaData.get();
             _sala.setEspecialidade(salaUpdateDto.getEspecialidade());
             _sala.setResponsavel(salaUpdateDto.getResponsavel());
-            log.info("atualizarSala: sala atualizada");
+            log.info("atualizarSala: sala " + numero + " atualizada");
             return new ResponseEntity<>(salaRepository.save(_sala), HttpStatus.OK);
         } else {
-            log.warn("atualizarSala: sala nao encontrada");
+            log.warn("atualizarSala: sala " + numero + " nao encontrada");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
