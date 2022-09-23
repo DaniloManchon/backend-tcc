@@ -78,7 +78,6 @@ public class SalaService {
     }
 
     public ResponseEntity<Sala> deletarSala(int numero) {
-
         Optional<Sala> salaData = Optional.ofNullable(salaRepository.findByNumero(numero));
         if (salaData.isPresent()) {
             salaRepository.deleteById(salaData.get().getId());
@@ -98,16 +97,18 @@ public class SalaService {
             Paciente _pacienteData = pacienteData.get();
             _pacienteData.setSala_atendimento(numero);
             _pacienteData.setProximo_passo("atendimento");
+            _pacienteData.setData_triagem(java.time.LocalDateTime.now());
             pacienteRepository.save(_pacienteData);
-            log.info("atenderPaciente: sala " + numero + "chamando paciente: " + _pacienteData.getId());
+            log.info("atenderPaciente: sala " + numero + " chamando paciente: " + _pacienteData.getId());
             return new ResponseEntity<>(pacienteData.get(), HttpStatus.OK);
         } else {
             Optional<Paciente> pacienteData = Optional.ofNullable(pacienteRepository.atendimento(salaData.get().getEspecialidade()));
             Paciente _pacienteData = pacienteData.get();
             _pacienteData.setSala_atendimento(numero);
             _pacienteData.setProximo_passo(null);
+            _pacienteData.setData_atendimento(java.time.LocalDateTime.now());
             pacienteRepository.save(_pacienteData);
-            log.info("atenderPaciente: sala " + numero + "chamando paciente: " + _pacienteData.getId());
+            log.info("atenderPaciente: sala " + numero + " chamando paciente: " + _pacienteData.getId());
             return new ResponseEntity<>(pacienteData.get(), HttpStatus.OK);
         }
     }
