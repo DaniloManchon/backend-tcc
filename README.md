@@ -8,6 +8,16 @@ O projeto é um dos serviços oferecidos pela Curare, uma healthtech com foco no
 
 Para contato (ou apenas spam), envie um e-mail para: <a href="mailto:jonataslima@curaresaude.com"> Jônatas </a>
 
+## Funcionamento
+
+A solução proposta se baseia na ideia em que salas de atendimento chamam os pacientes organizados de acordo com a prioridade, criticidade e pelo tempo em que estão na fila.
+ 
+A criação de um paciente na API é feita usando o minimo de informações possiveis para garantir a privacidade de quem será atendido, precisamos somente: do nome, CPF, se tem prioritaridade, e sua criticidade (caso essa ultima não seja passada, será atribuido automaticamente como baixa prioridade).
+Com o intuito de maximar a velocidade de atendimento e registrar quanto tempo cada paciente levou para ser atendido, quando um paciente é criado na api ou atendido, ela salva a data e hora à fim de gerarmos metrícas de tempo de atendimento.
+
+Para o hospital, ao criar uma sala na api é necessario apenas passar parametros como: numero da sala, responsavel e especialidade (triagem ou atendimento). O _endpoint_ de atendimento se encarregará de chamar o paciente levando em conta a especialidade da sala.
+
+
 ## Endpoints da aplicação  
 Atualmente os endpoints que a aplicação dispõe são:
 
@@ -29,7 +39,9 @@ Para criar um novo paciente
 - GET /paciente/{cpf}  
 Para buscar todas as informaçoes referentes ao paciente cujo CPF seja {cpf}
 - PATCH /paciente/{cpf}/criticidade  
-Para atualizar a criticidade de um paciente cujo CPF seja {cpf}
+Para atualizar a criticidade de um paciente cujo CPF seja {cpf}  
+- DELETE /paciente/{id}
+Para deletar um paciente cujo ID seja {id}
 
 ### Salas:
 - POST /new/sala  
