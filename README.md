@@ -71,6 +71,6 @@ Requisitos:
 - Docker
 - docker-compose
 
-Ao executar o comando _docker-compose up_ serão criados 2 container:
+Ao executar o comando _docker-compose up_ serão criados 2 containers:
 - **server**: nossa API (porta 10000)
 - **postgres**: Banco de dados Postgres (porta 10001)
