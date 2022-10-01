@@ -8,7 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Log4j2
@@ -77,6 +78,17 @@ public class PacienteService {
         }else{
             log.warn("deletarPaciente: paciente " + id + " nao encontrado");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    public ResponseEntity<List<Paciente>> findAllPacientes() {
+        List<Paciente> pacientes = new ArrayList<>(pacienteRepository.findAll());
+        if (pacientes.isEmpty()) {
+            log.info("findAll: nenhuma sala cadastrada");
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            log.info("findAll: retornando todas as salas");
+            return new ResponseEntity<>(pacientes, HttpStatus.OK);
         }
     }
 }
