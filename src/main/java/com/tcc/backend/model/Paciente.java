@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.lang.Nullable;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -40,10 +39,10 @@ public class Paciente {
     private LocalDateTime data_atendimento;
     @Column
     private String proximo_passo;
-    //relacionamento de muitos medicamento para um paciente
     @Nullable
     @Column
     private int sala_atendimento;
+    //relacionamento de muitos medicamento para um paciente
     @Nullable
     @OneToMany
     private List<Medicamento> medicamento;

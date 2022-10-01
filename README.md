@@ -36,6 +36,8 @@ Para substituir os exames em um paciente cujo CPF seja {cpf}
 ### Pacientes:
 - POST /new/paciente  
 Para criar um novo paciente
+- GET /pacientes  
+Para buscar informações sobre todas os pacientes cadastrados no banco de dados
 - GET /paciente/{cpf}  
 Para buscar todas as informaçoes referentes ao paciente cujo CPF seja {cpf}
 - PATCH /paciente/{cpf}/criticidade  
@@ -64,8 +66,11 @@ Retorna um HTTP Code 200, se a API estiver Online
 ---
 
 ## Testando Local  
+ 
+Requisitos:
+- Docker
+- docker-compose
 
-Para fazer os testes em ambiente local:  
-- Em ./src/main/resources/application.properties des-comentar tudo o que estiver abaixo de "Local H2" e comentar o que estiver abaixo de "Posgres";  
-  (Dessa forma o sistema usará um banco de dados H2 em memória ao invés de tentar se conectar à um Postgres)
-- É possivel rodar a aplicação como um container usando o comando "docker-compose up", ou simplesmente executar a aplicação usando a propria IDE.
+Ao executar o comando _docker-compose up_ serão criados 2 container:
+- **server**: nossa API (porta 10000)
+- **postgres**: Banco de dados Postgres (porta 10001)

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @CrossOrigin
 @RestController
@@ -28,6 +29,15 @@ public class PacienteController {
     public ResponseEntity<Paciente> findPacienteByCpf(@PathVariable("cpf") String cpf) {
         try {
             return pacienteService.findPacienteByCpf(cpf);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/pacientes")
+    public ResponseEntity<List<Paciente>> findAllPacientes() {
+        try {
+            return pacienteService.findAllPacientes();
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
