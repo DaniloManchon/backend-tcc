@@ -84,10 +84,10 @@ public class PacienteService {
     public ResponseEntity<List<Paciente>> findAllPacientes() {
         List<Paciente> pacientes = new ArrayList<>(pacienteRepository.findAll());
         if (pacientes.isEmpty()) {
-            log.info("findAll: nenhuma sala cadastrada");
+            log.info("findAll: nenhum paciente cadastrado");
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
-            log.info("findAll: retornando todas as salas");
+            log.info("findAll: retornando todos os pacientes");
             return new ResponseEntity<>(pacientes, HttpStatus.OK);
         }
     }
