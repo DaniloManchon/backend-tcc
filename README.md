@@ -72,10 +72,10 @@ Requisitos:
 - docker-compose
 
 Ao executar o comando _docker-compose up_ serão criados 2 containers:
-- **server**: nossa API (porta 10000)
-- **postgres**: Banco de dados Postgres (porta 10001)
+- **server**: nossa API (porta 10001)
+- **postgres**: Banco de dados Postgres (porta 10002)
 
 Note que é possivel testar a API usando uma IDE, para isso é necessario substituir, no _application.properties_, as configurações:  
-spring.datasource.url=jdbc:postgresql://localhost:10001/postgres  
+spring.datasource.url=jdbc:postgresql://localhost:10002/postgres  
 spring.datasource.username=user  
 spring.datasource.password=password  
