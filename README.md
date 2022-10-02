@@ -42,7 +42,7 @@ Para buscar informações sobre todas os pacientes cadastrados no banco de dados
 Para buscar todas as informaçoes referentes ao paciente cujo CPF seja {cpf}
 - PATCH /paciente/{cpf}/criticidade  
 Para atualizar a criticidade de um paciente cujo CPF seja {cpf}  
-- DELETE /paciente/{id}
+- DELETE /paciente/{id}  
 Para deletar um paciente cujo ID seja {id}
 
 ### Salas:
