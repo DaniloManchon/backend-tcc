@@ -12,6 +12,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 public class Sala {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

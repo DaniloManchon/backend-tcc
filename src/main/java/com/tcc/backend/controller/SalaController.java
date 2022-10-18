@@ -13,6 +13,7 @@ import java.util.List;
 @CrossOrigin
 @RestController
 public class SalaController {
+
     @Autowired
     SalaService salaService;
 
@@ -23,7 +24,6 @@ public class SalaController {
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
     }
 
     @GetMapping("/salas")
@@ -33,7 +33,6 @@ public class SalaController {
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
     }
 
     @GetMapping("/sala/{numero}")

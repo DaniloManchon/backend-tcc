@@ -15,6 +15,7 @@ import java.util.Optional;
 @Log4j2
 @Service
 public class PacienteService {
+
     @Autowired
     PacienteRepository pacienteRepository;
 
@@ -22,7 +23,7 @@ public class PacienteService {
         Optional<Paciente> pacienteData = Optional.ofNullable(pacienteRepository.findByCpf(paciente.getCpf()));
         if (pacienteData.isPresent()) {
             log.warn("criarPaciente: paciente: " + pacienteData.get().getId() + " encontrado");
-            return new ResponseEntity<>(null, HttpStatus.FOUND);
+            return new ResponseEntity<>(null, HttpStatus.CONFLICT);
         } else {
             if (paciente.getCriticidade() == 0) {
                 paciente.setCriticidade(5);
@@ -42,7 +43,7 @@ public class PacienteService {
                     )
             );
             log.info("criarPaciente: paciente: " + _paciente.getId() + " criado");
-            return new ResponseEntity<>(_paciente, HttpStatus.CREATED);
+            return new ResponseEntity<>(_paciente, HttpStatus.OK);
         }
     }
 

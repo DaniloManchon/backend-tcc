@@ -23,18 +23,16 @@ public class SalaService {
     @Autowired
     PacienteRepository pacienteRepository;
 
-
     public ResponseEntity<Sala> criarSala(Sala sala) {
         Optional<Sala> salaData = Optional.ofNullable(salaRepository.findByNumero(sala.getNumero()));
         if (salaData.isPresent()) {
             log.warn("criarSala: sala: " + sala.getNumero() + " encontrada");
-            return new ResponseEntity<>(salaData.get(), HttpStatus.FOUND);
+            return new ResponseEntity<>(salaData.get(), HttpStatus.CONFLICT);
         } else {
             salaRepository.save(new Sala(sala.getNumero(), sala.getEspecialidade(), sala.getResponsavel()));
             log.info("criarSala: criando sala: " + sala.getNumero());
-            return new ResponseEntity<>(sala, HttpStatus.CREATED);
+            return new ResponseEntity<>(sala, HttpStatus.OK);
         }
-
     }
 
     public ResponseEntity<List<Sala>> findAll() {
@@ -49,7 +47,6 @@ public class SalaService {
     }
 
     public ResponseEntity<Sala> findByNumero(int numero) {
-
         Optional<Sala> salaData = Optional.ofNullable(salaRepository.findByNumero(numero));
         if (salaData.isPresent()) {
             log.info("findByNumero: sala " + numero + " encontrada");
@@ -58,7 +55,6 @@ public class SalaService {
             log.warn("findByNumero: sala " + numero + " nao encontrada");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-
     }
 
     public ResponseEntity<Sala> atualizarSala(SalaUpdateDto salaUpdateDto, int numero) {
@@ -73,7 +69,6 @@ public class SalaService {
             log.warn("atualizarSala: sala " + numero + " nao encontrada");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-
     }
 
     public ResponseEntity<Sala> deletarSala(int numero) {
@@ -86,7 +81,6 @@ public class SalaService {
             log.warn("deletarSala: sala " + numero + " nao encontrada");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-
     }
 
     public ResponseEntity<Paciente> atenderPaciente(int numero) {
@@ -111,5 +105,4 @@ public class SalaService {
             return new ResponseEntity<>(pacienteData.get(), HttpStatus.OK);
         }
     }
-
 }
