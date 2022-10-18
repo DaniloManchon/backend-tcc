@@ -15,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 public class Paciente {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

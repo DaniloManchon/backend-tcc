@@ -5,6 +5,7 @@ import lombok.Getter;
 
 @Getter
 public class SalaUpdateDto {
+
     @JsonProperty
     private String especialidade;
     @JsonProperty

@@ -36,25 +36,21 @@ public class ExameService {
                 exameArrayList.add(exameRepository.save(new Exame(exame.getNome())));
             }
         }
-
         pacienteData.setExame(exameArrayList);
         pacienteRepository.save(pacienteData);
         log.info("addExame: adicionando exames ao paciente " + pacienteData.getId());
-        return new ResponseEntity<>(pacienteData, HttpStatus.CREATED);
+        return new ResponseEntity<>(pacienteData, HttpStatus.OK);
     }
 
     public ResponseEntity<Paciente> substituirExame(String cpf, Exame[] exameArray) {
         Paciente pacienteData = pacienteRepository.findByCpf(cpf);
         ArrayList<Exame> exameArrayList = new ArrayList<>();
-
         for (Exame exame : exameArray) {
             exameArrayList.add(exameRepository.save(new Exame(exame.getNome())));
         }
-
         pacienteData.setExame(exameArrayList);
         pacienteRepository.save(pacienteData);
         log.info("substituirExame: substituindo exames do paciente " + pacienteData.getId());
-        return new ResponseEntity<>(pacienteData, HttpStatus.CREATED);
+        return new ResponseEntity<>(pacienteData, HttpStatus.OK);
     }
-
 }

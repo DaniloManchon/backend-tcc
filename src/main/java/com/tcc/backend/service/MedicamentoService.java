@@ -23,7 +23,6 @@ public class MedicamentoService {
     public ResponseEntity<Paciente> addMedicamento(String cpf, Medicamento[] medicamentoArray) {
         Paciente pacienteData = pacienteRepository.findByCpf(cpf);
         ArrayList<Medicamento> medicamentoArrayList = new ArrayList<>();
-
         if (pacienteData.getMedicamento().isEmpty()) {
             for (Medicamento medicamento : medicamentoArray) {
                 medicamentoArrayList.add(medicamentoRepository.save(new Medicamento(medicamento.getNome(), medicamento.getDosagem())));
@@ -39,21 +38,18 @@ public class MedicamentoService {
         pacienteData.setMedicamento(medicamentoArrayList);
         pacienteRepository.save(pacienteData);
         log.info("addMedicamento: adicionando medicamentos ao paciente " + pacienteData.getId());
-        return new ResponseEntity<>(pacienteData, HttpStatus.CREATED);
+        return new ResponseEntity<>(pacienteData, HttpStatus.OK);
     }
 
     public ResponseEntity<Paciente> substituirMedicamento(String cpf, Medicamento[] medicamentoArray) {
         Paciente pacienteData = pacienteRepository.findByCpf(cpf);
         ArrayList<Medicamento> medicamentoArrayList = new ArrayList<>();
-
         for (Medicamento medicamento : medicamentoArray) {
             medicamentoArrayList.add(medicamentoRepository.save(new Medicamento(medicamento.getNome(), medicamento.getDosagem())));
         }
-
         pacienteData.setMedicamento(medicamentoArrayList);
         pacienteRepository.save(pacienteData);
         log.info("substituirMedicamento: substituindo medicamentos ao paciente " + pacienteData.getId());
-        return new ResponseEntity<>(pacienteData, HttpStatus.CREATED);
+        return new ResponseEntity<>(pacienteData, HttpStatus.OK);
     }
-
 }

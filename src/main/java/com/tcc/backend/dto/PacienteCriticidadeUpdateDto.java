@@ -5,6 +5,7 @@ import lombok.Getter;
 
 @Getter
 public class PacienteCriticidadeUpdateDto {
+
     @JsonProperty
     private int criticidade;
 }
