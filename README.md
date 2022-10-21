@@ -1,4 +1,4 @@
-# backend-tcc
+# Trooper
 
 Projeto de TCC do curso de Sistemas de Informação da FIAP.  
 
